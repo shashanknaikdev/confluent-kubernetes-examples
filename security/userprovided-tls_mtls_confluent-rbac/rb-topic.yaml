@@ -1,0 +1,13 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  name: test-topic-rb
+spec:
+  principal:
+    type: user
+    name: testadmin
+  resourcePatterns:
+  - name: test.topic-
+    patternType: PREFIXED
+    resourceType: Topic
+  role: ResourceOwner

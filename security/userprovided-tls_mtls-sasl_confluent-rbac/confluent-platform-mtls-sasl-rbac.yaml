@@ -50,8 +50,8 @@ spec:
       externalAccess:
         type: loadBalancer
         loadBalancer:
-          domain: cfk-demo.app
-          brokerPrefix: kafka
+          domain: kafka.confluent.svc.cluster.local
+          brokerPrefix: kafka-
           bootstrapPrefix: kafka
   authorization:
     type: rbac

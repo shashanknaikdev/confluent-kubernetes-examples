@@ -1,0 +1,31 @@
+---
+# rolebinding `testadmin-rb` allows `testadmin` to see kafkaCluster
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  name: operator-rb
+  namespace: confluent
+spec:
+  principal:
+    type: user
+    name: operator
+  role: ClusterAdmin
+  ## if use other kafkaRestClass except for default, need to configure accordingly
+  #kafkaRestClassRef:
+  # name: default
+---
+# rolebinding `testadmin-rb` allows `testadmin` to see kafkaCluster
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  name: kafkaclient-rb
+  namespace: confluent
+spec:
+  principal:
+    type: user
+    name: kafka_client
+  resourcePatterns:
+  - name: test-topic- #<namespace>.<connect_cluster_name>-
+    patternType: PREFIXED
+    resourceType: Topic
+  role: ResourceOwner
